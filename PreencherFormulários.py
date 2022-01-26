@@ -501,7 +501,7 @@ def coletareentrarnosites():
         # navegador.find_element(By.CSS_SELECTOR, 'button[type="button"][data-tag="btnSubmit"]').click()
         # time.sleep(5)
 
-        print(f'O preenchimento da vaga {i} foi concluído com sucesso!')
+        print(f'O preenchimento da vaga {i+1} foi concluído com sucesso!')
 
     print('Processo de preenchimento de formulários, foi conluído com sucesso!')
 
