@@ -5,7 +5,7 @@ Um projeto que visa automatizar o preenchimento dos formulários do site bradesc
 
   Com o projeto eu aprendi muita coisa, mas, tendo em vista meu baixo nível de conhecimento, ele ainda se encontra em um estado bastante rudimentar, sendo necessária várias lapidações para chegar em um nível desejável.
 
-  No momento o script atende apenas as vagas que fazem referência ao cargo de aprendiz, porém no futuro pretendo contemplar todas as vagas.
+  O script atende apenas as vagas que fazem referência aos cargos de aprendiz, estagiário e escriturário.
 
 Instruções:
 1 - Instalar o Selenium
