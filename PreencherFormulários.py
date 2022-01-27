@@ -6,7 +6,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import warnings
 
+warnings.filterwarnings("ignore")
 
 login_email = input('Login e-mail: ')
 senha_email = input('Senha e-mail: ')
