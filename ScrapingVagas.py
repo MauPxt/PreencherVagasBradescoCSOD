@@ -3,6 +3,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import pandas as pd
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 def obtervagas():
@@ -10,17 +16,20 @@ def obtervagas():
     options = Options()
     # options.add_experimental_option("detach", True)
     options.add_argument('--headless')
+    options.add_argument('--disable-notifications')
+    options.add_argument('log-level=3')
     navegador = webdriver.Chrome(options=options)
 
     # Entrando no site e esperando 5 segundos
     print('Entrando no site...')
     navegador.get(
         "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco&lang=pt-BR")
-    time.sleep(5)
+    WebDriverWait(navegador, 20).until(EC.presence_of_element_located(
+        (By.XPATH, '/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div/span/div/div/nav/button[2]')))
 
     # Botão cookie
     try:
-        navegador.find_element_by_class_name('c-btn').click()
+        navegador.find_element(By.CLASS_NAME, 'c-btn').click()
         time.sleep(0.5)
     except Exception:
         pass
@@ -35,18 +44,18 @@ def obtervagas():
     ultimo_botao = int(ultimo_botao)
 
     # Variável criada para servir de parâmetro para passar a página
-    numero_pagina = 0
+    numero_pagina = 1
 
     # Lista para encaixar as vagas
     dados_vagas = []
 
-    while numero_pagina != ultimo_botao:
+    while numero_pagina < ultimo_botao + 1:
         pagina_atual = navegador.page_source
         site_geral = BeautifulSoup(pagina_atual, 'html.parser')
         vagas_geral = site_geral.find(
             'div', attrs={'class': 'p-view-jobsearchresults'})
-        print('Buscando as vagas...')
-        time.sleep(0.5)
+        print(
+            f'Coletando e armazenando as vagas da página {numero_pagina}...')
         for vaga in vagas_geral:
             vaga_info = vaga.find('a', attrs={'data-tag': 'displayJobTitle'})
             vaga_url = vaga.find('a', attrs={'data-tag': 'displayJobTitle'})
@@ -70,11 +79,11 @@ def obtervagas():
             dados_vagas.append([vaga_info, vaga_local, vaga_url])
 
         print('Passando para a proxima página...')
-        navegador.find_element_by_xpath(
-            '/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/\
-                div/div/div[2]/div[2]/div/div/div[2]/div/\
-                    span/div/div/nav/button[2]').click()
+        navegador.find_element(By.XPATH,
+                               '/html/body/div[1]/div/div[1]/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div/span/div/div/nav/button[2]').click()
         numero_pagina = numero_pagina + 1
+        if numero_pagina == ultimo_botao + 1:
+            print('Encontrada a última página!')
         time.sleep(3)
 
     # Transformando os dados da lista em um dataframe e filtrando o local
@@ -84,7 +93,6 @@ def obtervagas():
     dados = dados[~df['Título'].str.contains('PCD')]
 
     print('Criando arquivo excel...')
-    time.sleep(0.5)
     # Convertendo para um arquivo excel
     dados.to_excel('VagasBradesco.xlsx')
     print('Concluído!')
