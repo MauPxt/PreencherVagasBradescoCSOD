@@ -25,11 +25,12 @@ profissao_pai = input('Profissão do pai')
 
 
 def enviarcurriculo():
-    # Configurações iniciais.
+    # Configurações do selenium
     options = Options()
-    options.add_experimental_option("detach", True)
-    # options.add_argument('--headless')
+    # options.add_experimental_option("detach", True)
+    options.add_argument('--headless')
     options.add_argument('--disable-notifications')
+    options.add_argument('log-level=3')
     navegador = webdriver.Chrome(options=options)
 
     # -----------------------# Parte 1 - Efetuar login
