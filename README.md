@@ -12,12 +12,16 @@
 ## Sobre:
 
   Olá, eu criei esse projeto por duas simples razões. A primeira é que eu estou iniciando por agora no mundo da programação, por tanto precisei de um projeto pessoal que me ajudasse a assimilar todo o conteúdo de uma maneira eficiente. A segunda razão é que notei que o site do bradesco não salva completamente os dados dos candidatos para futuras candidaturas. Com isso, uni o útil ao agradável, resolvi automatizar todo aquele processo repetitivo de preencher dados enquanto aprendo uma linguagem de programação.
+
+  
   Com o projeto eu aprendi muita coisa, mas, tendo em vista meu baixo nível de conhecimento, ele ainda se encontra em um estado bastante rudimentar.
   O script atende apenas as vagas que fazem referência aos cargos de aprendiz, estagiário e escriturário.
 
 
 ## Requisitos:
 Python
+
+
 Selenium
 
 # Instruções de uso:
