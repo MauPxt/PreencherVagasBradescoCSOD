@@ -21,7 +21,6 @@
 ## Requisitos:
 Python
 
-
 Selenium
 
 # Instruções de uso:
