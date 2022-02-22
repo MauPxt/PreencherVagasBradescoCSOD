@@ -6,9 +6,13 @@
 
  <img align="left" alt="Python" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" />
  <img align="left" alt="Selenium" width="50px" src="https://raw.githubusercontent.com/SeleniumHQ/www.seleniumhq.org/e846535b56af5f01151ec93f88785b86d3809564/src/main/webapp/images/originals/Selenium%20Logo%20Upright.svg" />
+ <img align="left" alt="Pandas" width="50px" src="https://avatars.githubusercontent.com/u/21206976?s=280&v=4" />
 
-  <br>
-  <br>
+
+<br>
+<br>
+<br>
+
 
 ## Sobre:
 
