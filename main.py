@@ -26,7 +26,7 @@ class VagasBradesco:
     def enviar_curriculo(self):
 
         login_email = input('Login e-mail: >>> ')
-        senha_email = getpass.getpass(prompt='Senha e-mail: *é correto não ser possível visualizar a senha >>> ', stream='*')
+        senha_email = getpass.getpass(prompt='Senha e-mail: *Não é possível visualizar, mas a senha está sendo escrita >>> ', stream='*')
         cpf = input('CPF: *somente numeros >>> ')
         rg = input('RG: *somente numeros >>> ')
         nascimento = input('Data de nascimento: *formato dd/mm/aaaa >>> ')
@@ -900,8 +900,9 @@ class VagasBradesco:
             'foi concluído com sucesso!')
 
     def obter_vagas(self):
+        filtro = input('Digite o(s) tipo(s) de vaga(s) desejada(s). \n*Preencha sem as aspas e com a seguinte separação: "APRENDIZ|ESTAGIÁRIO|ESCRITURÁRIO": >>>')
         
-        # Entrando no site e esperando 5 segundos
+        # Entrando no site
         print('Entrando no site...')
         self.navegador.get(
             "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco&lang"
@@ -976,7 +977,7 @@ class VagasBradesco:
         # Transformando os dados da lista em um dataframe e filtrando o local
         df = pd.DataFrame(dados_vagas, columns=['Título', 'Local', 'URL'])
         dados = df[df['Local'].str.contains('BRASIL', case=False)]
-        dados = dados[df['Título'].str.contains('APRENDIZ|ESTAGIÁRIO|ESCRITURÁRIO',
+        dados = dados[df['Título'].str.contains(filtro,
                                                 case=False)]
         dados = dados[~df['Título'].str.contains('PCD', case=False)]
 

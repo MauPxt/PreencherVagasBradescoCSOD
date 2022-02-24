@@ -19,7 +19,7 @@
   Olá, eu criei esse projeto por duas simples razões. A primeira foi a necessidade de um projeto pessoal que me ajudasse a assimilar todo o conteúdo de uma maneira eficiente. A segunda razão é que notei que o site do bradesco csod não salva completamente os dados dos candidatos para futuras candidaturas. Com isso, uni o útil ao agradável, e resolvi automatizar todo aquele processo repetitivo de preenchimento de dados.
 
   
-  O projeto ainda se encontra em desenvolvimento, por tanto é normal a ocorrência de bugs.
+  O projeto ainda se encontra em desenvolvimento, por tanto se ocorrer algum bug, peço encarecidamente que me comunique.
   O script atende apenas as vagas que fazem referência aos cargos de: aprendiz, estagiário e escriturário.
 
 
