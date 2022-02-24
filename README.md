@@ -35,7 +35,7 @@ Selenium
 1 - Realize o download dos arquivos. Você pode fazer isso da seguinte forma:
     1.1 - Baixar esse repositório em formato .zip e por fim extrair os arquivos para uma pasta de sua preferência.
     1.2 - Clonar esse repositório através do git com o seguinte comando: "$ git clone https://github.com/MauPxt/vagas_bradesco_csod".
-2 - POR ENQUANTO - abrir o arquivo e alterar o campo "linha 979 *é um campo da função obtervagas" e inserir a vaga desejada.
+2 - POR ENQUANTO - abrir o arquivo "main.py" e ir na linha "979" e no campo 'APRENDIZ|ESTAGIÁRIO|ESCRITURÁRIO' selecionar a vaga desejada, atenção: se deseja apenas a vaga de aprendiz, insira "APRENDIZ". Se deseja aprendiz e estagiário, insira "APRENDIZ|ESTAGIÁRIO".
 3 - Utilizar o comando "$ pip install " para cada biblioteca das linhas "1-11" que você ainda não realizou a instalação.
 4 - Executar o script "$ python main.py":
   3.1 - Inserir os dados solicitados no terminal.
