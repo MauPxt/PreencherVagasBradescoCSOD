@@ -16,10 +16,10 @@
 
 ## Sobre:
 
-  Olá, eu criei esse projeto por duas simples razões. A primeira é que eu estou iniciando por agora no mundo da programação, por tanto precisei de um projeto pessoal que me ajudasse a assimilar todo o conteúdo de uma maneira eficiente. A segunda razão é que notei que o site do bradesco csod não salva completamente os dados dos candidatos para futuras candidaturas. Com isso, uni o útil ao agradável, resolvi automatizar todo aquele processo repetitivo de preenchimento de dados.
+  Olá, eu criei esse projeto por duas simples razões. A primeira foi a necessidade de um projeto pessoal que me ajudasse a assimilar todo o conteúdo de uma maneira eficiente. A segunda razão é que notei que o site do bradesco csod não salva completamente os dados dos candidatos para futuras candidaturas. Com isso, uni o útil ao agradável, e resolvi automatizar todo aquele processo repetitivo de preenchimento de dados.
 
   
-  Tendo em vista o meu baixo nível de conhecimento, o projeto ainda se encontra em um estágio bastante rudimentar.
+  O projeto ainda se encontra em desenvolvimento, por tanto é normal a ocorrência de bugs.
   O script atende apenas as vagas que fazem referência aos cargos de: aprendiz, estagiário e escriturário.
 
 
@@ -28,15 +28,18 @@ Python
 
 Selenium
 
+
 # Instruções de uso:
 
 ```sh
 1 - Realize o download dos arquivos. Você pode fazer isso da seguinte forma:
     1.1 - Baixar esse repositório em formato .zip e por fim extrair os arquivos para uma pasta de sua preferência.
-    1.2 - Clonar esse repositório através do git com o seguinte comando: "$ git clone https://github.com/MauPxt/vagas_bradesco_csod"
-2 - executar o script de nome "scrapingvagas" para criar uma planilha com o link de todas as vagas filtradas para o cargo de aprendiz, estagiário e escriturário.
-3 - POR ENQUANTO - ir na planilha criada e deletar as vagas que não deseja se candidatar.
-4 - Iniciar o script "preencherformulários" com o comando: "$ python preencherformulários.py"
+    1.2 - Clonar esse repositório através do git com o seguinte comando: "$ git clone https://github.com/MauPxt/vagas_bradesco_csod".
+2 - POR ENQUANTO - abrir o arquivo e alterar o campo "linha 979 *é um campo da função obtervagas" e inserir a vaga desejada.
+3 - Utilizar o comando "$ pip install " para cada biblioteca das linhas "1-11" que você ainda não realizou a instalação.
+4 - Executar o script "$ python main.py":
+  3.1 - Inserir os dados solicitados no terminal.
+5 - Bônus - Para verificar as vagas que foi cadastrado basta abrir o arquivo em excel gerado na pasta em que se encontra o script.
 ```
 
 ## Extra:
