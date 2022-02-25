@@ -22,11 +22,12 @@ class VagasBradesco:
         options.add_argument('--disable-notifications')
         options.add_argument('log-level=3')
         self.navegador = webdriver.Chrome(options=options)
-    
+
     def enviar_curriculo(self):
 
         login_email = input('Login e-mail: >>> ')
-        senha_email = getpass.getpass(prompt='Senha e-mail: *Não é possível visualizar, mas a senha está sendo escrita >>> ', stream='*')
+        senha_email = getpass.getpass(
+            prompt='Senha e-mail: *Não é possível visualizar, mas a senha está sendo escrita >>> ', stream='*')
         cpf = input('CPF: *somente numeros >>> ')
         rg = input('RG: *somente numeros >>> ')
         nascimento = input('Data de nascimento: *formato dd/mm/aaaa >>> ')
@@ -34,12 +35,13 @@ class VagasBradesco:
         nome_do_curso = input('Nome do curso: *ex: economia >>> ')
         ano_conclusao = input('Ano de conclusão do curso: >>> ')
         nome_mae = input('Nome da mãe: >>> ')
-        nascimento_mae = input('Data de nascimento da mãe: *formato dd/mm/aaaa >>> ')
+        nascimento_mae = input(
+            'Data de nascimento da mãe: *formato dd/mm/aaaa >>> ')
         profissao_mae = input('Profissão da mãe: >>> ')
         nome_pai = input('Nome do pai: >>> ')
-        nascimento_pai = input('Data de nascimento do pai: *formato dd/mm/aaaa >>> ')
+        nascimento_pai = input(
+            'Data de nascimento do pai: *formato dd/mm/aaaa >>> ')
         profissao_pai = input('Profissão do pai: >>> ')
-
 
         # -----------------------# Parte 1 - Efetuar login
         print('Entrando no site...')
@@ -60,32 +62,32 @@ class VagasBradesco:
         print('Iniciando processo de login...')
         WebDriverWait(self.navegador, 20).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="cs-root"]/div'
-                                                    '/div[1]/div[1]/spa'
-                                                    'n/div/'
-                                                    'div/div/div/div/div/div'
-                                                    '/div[2]/a')))
+                                            '/div[1]/div[1]/spa'
+                                            'n/div/'
+                                            'div/div/div/div/div/div'
+                                            '/div[2]/a')))
         # BOTAO ENTRAR
         self.navegador.find_element(By.XPATH, '//*[@id="cs-root"]/div/div[1]/div['
-                                        '1]/span/div/ '
-                                        'div/div/div/div/div/div/div['
-                                        '2]/a').click()
+                                    '1]/span/div/ '
+                                    'div/div/div/div/div/div/div['
+                                    '2]/a').click()
         WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
             (By.XPATH, '//*[@id="ctl00_siteContent_txtEmail"]')))
         # E-MAIL LOGIN
         self.navegador.find_element(By.XPATH,
-                            '//*[@id="ctl00_site'
-                            'Content_txtEmail"]').send_keys(
+                                    '//*[@id="ctl00_site'
+                                    'Content_txtEmail"]').send_keys(
             login_email)
 
         # SENHA
         self.navegador.find_element(By.XPATH,
-                            '//*[@id="ctl00_site'
-                            'Content_txtPassword"]').send_keys(
+                                    '//*[@id="ctl00_site'
+                                    'Content_txtPassword"]').send_keys(
             senha_email)
 
         # BOTAO LOGIN
         self.navegador.find_element(By.XPATH,
-                            '//*[@id="ctl00_siteContent_btnSignIn"]').send_keys(
+                                    '//*[@id="ctl00_siteContent_btnSignIn"]').send_keys(
             Keys.ENTER)
 
         print('Login concluído com sucesso!')
@@ -108,8 +110,8 @@ class VagasBradesco:
 
             # Página cadastro
             self.navegador.find_element(By.CSS_SELECTOR, 'button[type="button"]['
-                                                    'data-tag="apply'
-                                                    'NowButton"]').click()
+                                        'data-tag="apply'
+                                        'NowButton"]').click()
             WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, 'button[type="button"][data-tag="btnNext"]')))
 
@@ -125,16 +127,16 @@ class VagasBradesco:
 
             # PRÓXIMA PÁGINA
             self.navegador.find_element(By.CSS_SELECTOR,
-                                'button[type="button"]'
-                                '[data-tag="btnNext"]').click()
+                                        'button[type="button"]'
+                                        '[data-tag="btnNext"]').click()
             WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
                 (By.XPATH, '/html/body/div/div/div[2]/div['
-                        '2]/div/div/div/div['
-                        '1]/div/div/div[ '
-                        '2]/div/div/div/div/div[ '
-                        '2]/div/div/div/div/span['
-                        '1]/div/div/div/div/div['
-                        '3]/div/div/div/div/div/div/input')))
+                 '2]/div/div/div/div['
+                 '1]/div/div/div[ '
+                 '2]/div/div/div/div/div[ '
+                 '2]/div/div/div/div/span['
+                 '1]/div/div/div/div/div['
+                 '3]/div/div/div/div/div/div/input')))
 
             # ----------------------- #
             # --- SEGUNDA PÁGINA --- #
@@ -142,163 +144,167 @@ class VagasBradesco:
 
             # CPF
             self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                            '2]/div/div/div/div[1]/div/div/div['
-                                            '2]/div/div/div/div/div[ '
-                                            '2]/div/div/div/div/span['
-                                            '1]/div/div/div/div/div['
-                                            '3]/div/div/div/'
-                                            'div/div/div/input').send_keys(
+                                        '2]/div/div/div/div[1]/div/div/div['
+                                        '2]/div/div/div/div/div[ '
+                                        '2]/div/div/div/div/span['
+                                        '1]/div/div/div/div/div['
+                                        '3]/div/div/div/'
+                                        'div/div/div/input').send_keys(
                 cpf)
 
             # RG
             self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                            '2]/div/div/div/div[1]/div/div/div['
-                                            '2]/div/div/div/div/div[ '
-                                            '2]/div/div/div/div/span['
-                                            '2]/div/div/div/div/div['
-                                            '3]/div/div/div/'
-                                            'div/div/div/input').send_keys(
+                                        '2]/div/div/div/div[1]/div/div/div['
+                                        '2]/div/div/div/div/div[ '
+                                        '2]/div/div/div/div/span['
+                                        '2]/div/div/div/div/div['
+                                        '3]/div/div/div/'
+                                        'div/div/div/input').send_keys(
                 rg)
 
             # BOTÃO ESTADO
             botao_estado = self.navegador.find_element(By.XPATH,
-                                                '/html/body/div/div/div['
-                                                '2]/div[2]/div/div/div/div['
-                                                '1]/div/div/div[ '
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '3]/div/div/div/div/div['
-                                                '3]/div/label[5]/span')
-            self.navegador.execute_script("arguments[0].click();", botao_estado)
+                                                       '/html/body/div/div/div['
+                                                       '2]/div[2]/div/div/div/div['
+                                                       '1]/div/div/div[ '
+                                                       '2]/div/div/div/div/div[ '
+                                                       '2]/div/div/div/div/span['
+                                                       '3]/div/div/div/div/div['
+                                                       '3]/div/label[5]/span')
+            self.navegador.execute_script(
+                "arguments[0].click();", botao_estado)
 
             # DATA DE NASCIMENTO
             self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                            '2]/div/div/div/div[1]/div/div/div['
-                                            '2]/div/div/div/div/div[ '
-                                            '2]/div/div/div/div/span['
-                                            '4]/div/div/div/div/div['
-                                            '3]/div/div/div/input').send_keys(
+                                        '2]/div/div/div/div[1]/div/div/div['
+                                        '2]/div/div/div/div/div[ '
+                                        '2]/div/div/div/div/span['
+                                        '4]/div/div/div/div/div['
+                                        '3]/div/div/div/input').send_keys(
                 nascimento)
 
             # IDADE
             self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                            '2]/div/div/div/div[1]/div/div/div['
-                                            '2]/div/div/div/div/div[ '
-                                            '2]/div/div/div/div/span['
-                                            '5]/div/div/div/div/div['
-                                            '3]/div/div/div/d'
-                                            'iv/div/div/input').send_keys(
+                                        '2]/div/div/div/div[1]/div/div/div['
+                                        '2]/div/div/div/div/div[ '
+                                        '2]/div/div/div/div/span['
+                                        '5]/div/div/div/div/div['
+                                        '3]/div/div/div/d'
+                                        'iv/div/div/input').send_keys(
                 idade)
 
             # FAIXA ETÁRIA
             botao_faixa_etaria = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div/div/div['
-                                                        '2]/div['
-                                                        '2]/div/div/div/div['
-                                                        '1]/div/div/div[ '
-                                                        '2]/div/div/div/div/div[ '
-                                                        '2]/div/div/div/div'
-                                                        '/span['
-                                                        '6]/div/div/div/div/div['
-                                                        '3]/div/label[ '
-                                                        '3]/span')
-            self.navegador.execute_script("arguments[0].click();", botao_faixa_etaria)
+                                                             '/html/body/div/div/div['
+                                                             '2]/div['
+                                                             '2]/div/div/div/div['
+                                                             '1]/div/div/div[ '
+                                                             '2]/div/div/div/div/div[ '
+                                                             '2]/div/div/div/div'
+                                                             '/span['
+                                                             '6]/div/div/div/div/div['
+                                                             '3]/div/label[ '
+                                                             '3]/span')
+            self.navegador.execute_script(
+                "arguments[0].click();", botao_faixa_etaria)
 
             # DEFICIENCIA
             botao_deficiencia = self.navegador.find_element(By.XPATH,
-                                                    '/html/body/div/div/div['
-                                                    '2]/div['
-                                                    '2]/div/div/div/div['
-                                                    '1]/div/div/div[ '
-                                                    '2]/div/div/div/div/div[ '
-                                                    '2]/div/div/div/div/span['
-                                                    '7]/div/div/div/div/div['
-                                                    '3]/div/label[2]/span')
-            self.navegador.execute_script("arguments[0].click();", botao_deficiencia)
+                                                            '/html/body/div/div/div['
+                                                            '2]/div['
+                                                            '2]/div/div/div/div['
+                                                            '1]/div/div/div[ '
+                                                            '2]/div/div/div/div/div[ '
+                                                            '2]/div/div/div/div/span['
+                                                            '7]/div/div/div/div/div['
+                                                            '3]/div/label[2]/span')
+            self.navegador.execute_script(
+                "arguments[0].click();", botao_deficiencia)
 
             if tipo_de_vaga.__contains__('ESTÁGIO') or tipo_de_vaga.__contains__(
                     'ESCRITURÁRIO'):
                 # Possui outra fonte de renda que não seja trabalho assalariado
                 # (CLT) atualmente? #ESTÁGIO
                 botao_assalariado = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div/div'
-                                                        '/div[2]/div['
-                                                        '2]/div/div/div/div[ '
-                                                        '1]/div/div/div['
-                                                        '2]/div/di'
-                                                        'v/div/div/div[ '
-                                                        '2]/div/div/div/div'
-                                                        '/span['
-                                                        '8]/div/div/div/div'
-                                                        '/div[3]/div/label[ '
-                                                        '2]/span')
+                                                                '/html/body/div/div'
+                                                                '/div[2]/div['
+                                                                '2]/div/div/div/div[ '
+                                                                '1]/div/div/div['
+                                                                '2]/div/di'
+                                                                'v/div/div/div[ '
+                                                                '2]/div/div/div/div'
+                                                                '/span['
+                                                                '8]/div/div/div/div'
+                                                                '/div[3]/div/label[ '
+                                                                '2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_assalariado)
+                                              botao_assalariado)
 
                 # Possui participação societária em alguma empresa? #ESTÁGIO
                 botao_societaria = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div/div'
-                                                        '/div[2]/div['
-                                                        '2]/div/div/div/div['
-                                                        '1]/div/div/div['
-                                                        '2]/div/div/div/div'
-                                                        '/div['
-                                                        '2]/div/div/div/div'
-                                                        '/span['
-                                                        '9]/div/div/div/div'
-                                                        '/div[3]/div/label['
-                                                        '2]/span')
-                self.navegador.execute_script("arguments[0].click();", botao_societaria)
+                                                               '/html/body/div/div'
+                                                               '/div[2]/div['
+                                                               '2]/div/div/div/div['
+                                                               '1]/div/div/div['
+                                                               '2]/div/div/div/div'
+                                                               '/div['
+                                                               '2]/div/div/div/div'
+                                                               '/span['
+                                                               '9]/div/div/div/div'
+                                                               '/div[3]/div/label['
+                                                               '2]/span')
+                self.navegador.execute_script(
+                    "arguments[0].click();", botao_societaria)
 
             if tipo_de_vaga.__contains__('ESCRITURÁRIO'):
                 # Como você se auto identifica?
                 botao_auto_declaracao = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div['
-                                                            '1]/div/div['
-                                                            '2]/div['
-                                                            '2]/div/div/div'
-                                                            '/div['
-                                                            '1]/div/div/div['
-                                                            '2]/div/div/div'
-                                                            '/div/div['
-                                                            '2]/div/div/div'
-                                                            '/div/span['
-                                                            '10]/div/div/div'
-                                                            '/div/div['
-                                                            '3]/div/label['
-                                                            '5]/span')
+                                                                    '/html/body/div['
+                                                                    '1]/div/div['
+                                                                    '2]/div['
+                                                                    '2]/div/div/div'
+                                                                    '/div['
+                                                                    '1]/div/div/div['
+                                                                    '2]/div/div/div'
+                                                                    '/div/div['
+                                                                    '2]/div/div/div'
+                                                                    '/div/span['
+                                                                    '10]/div/div/div'
+                                                                    '/div/div['
+                                                                    '3]/div/label['
+                                                                    '5]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_auto_declaracao)
+                                              botao_auto_declaracao)
 
                 # Confirme o seu nível de escolaridade atual
                 botao_escolaridade_escriturario = self.navegador.find_element(By.XPATH,
-                                                                        '/html'
-                                                                        '/body'
-                                                                        '/div['
-                                                                        '1]/div'
-                                                                        '/div['
-                                                                        '2]/div[2'
-                                                                        ']/div/di'
-                                                                        'v/div/di'
-                                                                        'v[1]/di'
-                                                                        'v/div/di'
-                                                                        'v[2]/d'
-                                                                        'iv/div'
-                                                                        '/div/d'
-                                                                        'iv/div[2'
-                                                                        ']/div/'
-                                                                        'div/div'
-                                                                        '/div/sp'
-                                                                        'an[11]'
-                                                                        '/div/d'
-                                                                        'iv/div/'
-                                                                        'div/di'
-                                                                        'v[3]/di'
-                                                                        'v/label'
-                                                                        '[3]/sp'
-                                                                        'an')
+                                                                              '/html'
+                                                                              '/body'
+                                                                              '/div['
+                                                                              '1]/div'
+                                                                              '/div['
+                                                                              '2]/div[2'
+                                                                              ']/div/di'
+                                                                              'v/div/di'
+                                                                              'v[1]/di'
+                                                                              'v/div/di'
+                                                                              'v[2]/d'
+                                                                              'iv/div'
+                                                                              '/div/d'
+                                                                              'iv/div[2'
+                                                                              ']/div/'
+                                                                              'div/div'
+                                                                              '/div/sp'
+                                                                              'an[11]'
+                                                                              '/div/d'
+                                                                              'iv/div/'
+                                                                              'div/di'
+                                                                              'v[3]/di'
+                                                                              'v/label'
+                                                                              '[3]/sp'
+                                                                              'an')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_escolaridade_escriturario)
+                                              botao_escolaridade_escriturario)
 
                 # Situação do Ensino Superior
                 botao_situacao_ensino_superior_escrit = self.navegador.find_element(
@@ -307,25 +313,25 @@ class VagasBradesco:
                     'div/div[2]/div/div/div/div/div[2]/div/div/div/div/span[12]/d'
                     'iv/div/div/div/div[3]/div/label[1]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_situacao_ensino_superior_escrit)
+                                              botao_situacao_ensino_superior_escrit)
 
                 # Qual das opções abaixo melhor descreve o seu curso superior?
                 botao_area_curso_superior = self.navegador.find_element(By.XPATH,
-                                                                '/html/body/div'
-                                                                '[1]/div/div[2'
-                                                                ']/div[2]/div'
-                                                                '/div/div/div'
-                                                                '[1]/div/div/'
-                                                                'div[2]/div/d'
-                                                                'iv/div/div/d'
-                                                                'iv[2]/div/di'
-                                                                'v/div/div/sp'
-                                                                'an[13]/div/d'
-                                                                'iv/div/div/d'
-                                                                'iv[3]/div/la'
-                                                                'bel[1]/span')
+                                                                        '/html/body/div'
+                                                                        '[1]/div/div[2'
+                                                                        ']/div[2]/div'
+                                                                        '/div/div/div'
+                                                                        '[1]/div/div/'
+                                                                        'div[2]/div/d'
+                                                                        'iv/div/div/d'
+                                                                        'iv[2]/div/di'
+                                                                        'v/div/div/sp'
+                                                                        'an[13]/div/d'
+                                                                        'iv/div/div/d'
+                                                                        'iv[3]/div/la'
+                                                                        'bel[1]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_area_curso_superior)
+                                              botao_area_curso_superior)
 
                 # Estudou na Fundação Bradesco?
                 botao_estudou_fundacao_bradesco_escrit = self.navegador.find_element(
@@ -334,7 +340,7 @@ class VagasBradesco:
                     'v/div/div[2]/div/div/div/div/div[2]/div/div/div/div/span['
                     '14]/div/div/div/div/div[3]/div/label[2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_estudou_fundacao_bradesco_escrit)
+                                              botao_estudou_fundacao_bradesco_escrit)
 
                 # Possui alguma das certificações abaixo?
                 # botao_certificacao_escrit = self.navegador.find_element(By.XPATH,
@@ -361,7 +367,7 @@ class VagasBradesco:
                     'v/div/div[2]/div/div/div/div/div[2]/div/div/div/div/span[1'
                     '6]/div/div/div/div/div[3]/div/label[2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_experiencia_setor_financeiro)
+                                              botao_experiencia_setor_financeiro)
 
                 # Já atuou como Estagiário ou Aprendiz na Organização Bradesco?
                 botao_atuou_estag_fundacao_brad_escrit = self.navegador.find_element(
@@ -370,25 +376,26 @@ class VagasBradesco:
                     '/div/div[2]/div/div/div/div/div[2]/div/div/div/div/span[17]'
                     '/div/div/div/div/div[3]/div/label[2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_atuou_estag_fundacao_brad_escrit)
+                                              botao_atuou_estag_fundacao_brad_escrit)
 
                 # Qual a distância aproximada da sua residência até o local da
                 # vaga?
                 botao_distancia = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div[1]/di'
-                                                        'v/div[2]/div[2]/div/di'
-                                                        'v/div/div[1]/div/div/d'
-                                                        'iv[2]/div/div/div/div/'
-                                                        'div[2]/div/div/div/div'
-                                                        '/span[18]/div/div/div/'
-                                                        'div/div[3]/div/label[1'
-                                                        ']/span')
-                self.navegador.execute_script("arguments[0].click();", botao_distancia)
+                                                              '/html/body/div[1]/di'
+                                                              'v/div[2]/div[2]/div/di'
+                                                              'v/div/div[1]/div/div/d'
+                                                              'iv[2]/div/div/div/div/'
+                                                              'div[2]/div/div/div/div'
+                                                              '/span[18]/div/div/div/'
+                                                              'div/div[3]/div/label[1'
+                                                              ']/span')
+                self.navegador.execute_script(
+                    "arguments[0].click();", botao_distancia)
 
             # PRÓXIMA PÁGINA
             self.navegador.find_element(By.CSS_SELECTOR,
-                                'button[type="button"][dat'
-                                'a-tag="btnNext"]').click()
+                                        'button[type="button"][dat'
+                                        'a-tag="btnNext"]').click()
 
             # ----------------------- #
             # --- TERCEIRA PÁGINA --- #
@@ -402,66 +409,67 @@ class VagasBradesco:
                     '1]/div/div/div/div/div[3]/div/label[3]/span')))
                 # Confirme o seu nível de escolaridade atual
                 botao_escolaridade = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div['
-                                                            '1]/div/div[2]/div['
-                                                            '2]/div/div/div/div['
-                                                            '1]/div/div/div['
-                                                            '2]/div/div/div/div'
-                                                            '/div/div/div/div'
-                                                            '/div/span['
-                                                            '1]/div/div/div/div'
-                                                            '/div[3]/div/label['
-                                                            '3]/span')
+                                                                 '/html/body/div['
+                                                                 '1]/div/div[2]/div['
+                                                                 '2]/div/div/div/div['
+                                                                 '1]/div/div/div['
+                                                                 '2]/div/div/div/div'
+                                                                 '/div/div/div/div'
+                                                                 '/div/span['
+                                                                 '1]/div/div/div/div'
+                                                                 '/div[3]/div/label['
+                                                                 '3]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_escolaridade)
+                                              botao_escolaridade)
 
                 # Estuda ou concluiu o ensino médio em Instituição de Ensino:
                 botao_situacao_ensino = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div['
-                                                            '1]/div/div['
-                                                            '2]/div['
-                                                            '2]/div/div/div'
-                                                            '/div['
-                                                            '1]/div/div/div['
-                                                            '2]/div/div/div'
-                                                            '/div/div/div'
-                                                            '/div/div/div/'
-                                                            'span[2]/div/d'
-                                                            'iv/div/div/di'
-                                                            'v[3]/div/labe'
-                                                            'l[1]/span')
+                                                                    '/html/body/div['
+                                                                    '1]/div/div['
+                                                                    '2]/div['
+                                                                    '2]/div/div/div'
+                                                                    '/div['
+                                                                    '1]/div/div/div['
+                                                                    '2]/div/div/div'
+                                                                    '/div/div/div'
+                                                                    '/div/div/div/'
+                                                                    'span[2]/div/d'
+                                                                    'iv/div/div/di'
+                                                                    'v[3]/div/labe'
+                                                                    'l[1]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_situacao_ensino)
+                                              botao_situacao_ensino)
 
                 # ESTUDOU NA FUNDAÇÃO BRADESCO?
                 botao_fundacao_bradesco = self.navegador.find_element(By.XPATH,
-                                                                '/html/body'
-                                                                '/div['
-                                                                '1]/div/div['
-                                                                '2]/div['
-                                                                '2]/div/div/di'
-                                                                'v/div[1]/div/'
-                                                                'div/div[2]/div'
-                                                                '/div/div/div/di'
-                                                                'v/div/div/div/d'
-                                                                'iv/span[3]/div'
-                                                                '/div/div/div/di'
-                                                                'v[3]/div/label['
-                                                                '2]/span')
+                                                                      '/html/body'
+                                                                      '/div['
+                                                                      '1]/div/div['
+                                                                      '2]/div['
+                                                                      '2]/div/div/di'
+                                                                      'v/div[1]/div/'
+                                                                      'div/div[2]/div'
+                                                                      '/div/div/div/di'
+                                                                      'v/div/div/div/d'
+                                                                      'iv/span[3]/div'
+                                                                      '/div/div/div/di'
+                                                                      'v[3]/div/label['
+                                                                      '2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_fundacao_bradesco)
+                                              botao_fundacao_bradesco)
 
                 # Já trabalhou como Aprendiz?
                 botao_aprendiz = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div['
-                                                        '1]/div/div[2]/div['
-                                                        '2]/div/div/div/div['
-                                                        '1]/div/div/div['
-                                                        '2]/div/div/div/div/div'
-                                                        '/div/div/div/div/span['
-                                                        '4]/div/div/div/div/div['
-                                                        '3]/div/label[2]/span')
-                self.navegador.execute_script("arguments[0].click();", botao_aprendiz)
+                                                             '/html/body/div['
+                                                             '1]/div/div[2]/div['
+                                                             '2]/div/div/div/div['
+                                                             '1]/div/div/div['
+                                                             '2]/div/div/div/div/div'
+                                                             '/div/div/div/div/span['
+                                                             '4]/div/div/div/div/div['
+                                                             '3]/div/label[2]/span')
+                self.navegador.execute_script(
+                    "arguments[0].click();", botao_aprendiz)
 
             if tipo_de_vaga.__contains__('ESTÁGIO'):
                 WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located((
@@ -471,105 +479,105 @@ class VagasBradesco:
                     '1]/div/div/div/div/div[3]/div/label[3]/span')))
                 # Confirme o seu nível de escolaridade atual
                 botao_nivel_escolaridade = self.navegador.find_element(By.XPATH,
-                                                                '/html/body'
-                                                                '/div['
-                                                                '1]/div/div['
-                                                                '2]/div['
-                                                                '2]/div/div'
-                                                                '/div/div['
-                                                                '1]/div/div'
-                                                                '/div['
-                                                                '2]/div/div'
-                                                                '/div/div/div '
-                                                                '/div/div/div'
-                                                                '/div/span['
-                                                                '1]/div/div'
-                                                                '/div/div/div['
-                                                                '3]/div/label['
-                                                                '3]/span')
+                                                                       '/html/body'
+                                                                       '/div['
+                                                                       '1]/div/div['
+                                                                       '2]/div['
+                                                                       '2]/div/div'
+                                                                       '/div/div['
+                                                                       '1]/div/div'
+                                                                       '/div['
+                                                                       '2]/div/div'
+                                                                       '/div/div/div '
+                                                                       '/div/div/div'
+                                                                       '/div/span['
+                                                                       '1]/div/div'
+                                                                       '/div/div/div['
+                                                                       '3]/div/label['
+                                                                       '3]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_nivel_escolaridade)
+                                              botao_nivel_escolaridade)
 
                 # Informe o nome do curso
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div['
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div/div/div/div/div'
-                                    '/span[2]/div/div/div/div/div['
-                                    '3]/div/div/div/div/div'
-                                    '/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div['
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div/div/div/div/div'
+                                            '/span[2]/div/div/div/div/div['
+                                            '3]/div/div/div/div/div'
+                                            '/div/input').send_keys(
                     nome_do_curso)
 
                 # Situação do Ensino Superior
                 botao_situacao_ensino_superior = self.navegador.find_element(By.XPATH,
-                                                                        '/html'
-                                                                        '/body'
-                                                                        '/div['
-                                                                        '1]/div'
-                                                                        '/div['
-                                                                        '2]/div['
-                                                                        '2]/div/'
-                                                                        'div/div'
-                                                                        '/div[1]'
-                                                                        '/div/di'
-                                                                        'v/div[2'
-                                                                        ']/div/d'
-                                                                        'iv/div/'
-                                                                        'div/div'
-                                                                        '/div/di'
-                                                                        'v/div/d'
-                                                                        'iv/span'
-                                                                        '[3]/div'
-                                                                        '/div/di'
-                                                                        'v/div/d'
-                                                                        'iv[3]/d'
-                                                                        'iv/labe'
-                                                                        'l[1]/sp'
-                                                                        'an')
+                                                                             '/html'
+                                                                             '/body'
+                                                                             '/div['
+                                                                             '1]/div'
+                                                                             '/div['
+                                                                             '2]/div['
+                                                                             '2]/div/'
+                                                                             'div/div'
+                                                                             '/div[1]'
+                                                                             '/div/di'
+                                                                             'v/div[2'
+                                                                             ']/div/d'
+                                                                             'iv/div/'
+                                                                             'div/div'
+                                                                             '/div/di'
+                                                                             'v/div/d'
+                                                                             'iv/span'
+                                                                             '[3]/div'
+                                                                             '/div/di'
+                                                                             'v/div/d'
+                                                                             'iv[3]/d'
+                                                                             'iv/labe'
+                                                                             'l[1]/sp'
+                                                                             'an')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_situacao_ensino_superior)
+                                              botao_situacao_ensino_superior)
 
                 # Ano de término
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div['
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div/div/div/div/div'
-                                    '/span[4]/div/div/div/div/div['
-                                    '3]/div/div/div/div/div'
-                                    '/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div['
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div/div/div/div/div'
+                                            '/span[4]/div/div/div/div/div['
+                                            '3]/div/div/div/div/div'
+                                            '/div/input').send_keys(
                     ano_conclusao)
 
                 # Estudou na Fundação Bradesco?
                 botao_estudou_fundacao_bradesco = self.navegador.find_element(By.XPATH,
-                                                                        '/html'
-                                                                        '/body'
-                                                                        '/div['
-                                                                        '1]/div'
-                                                                        '/div['
-                                                                        '2]/div'
-                                                                        '[2]/d'
-                                                                        'iv/div'
-                                                                        '/div/d'
-                                                                        'iv[1]/'
-                                                                        'div/di'
-                                                                        'v/div['
-                                                                        '2]/div'
-                                                                        '/div/d'
-                                                                        'iv/div'
-                                                                        '/div/d'
-                                                                        'iv/div'
-                                                                        '/div/d'
-                                                                        'iv/spa'
-                                                                        'n[5]/d'
-                                                                        'iv/div'
-                                                                        '/div/d'
-                                                                        'iv/div'
-                                                                        '[3]/di'
-                                                                        'v/labe'
-                                                                        'l[2]/s'
-                                                                        'pan')
+                                                                              '/html'
+                                                                              '/body'
+                                                                              '/div['
+                                                                              '1]/div'
+                                                                              '/div['
+                                                                              '2]/div'
+                                                                              '[2]/d'
+                                                                              'iv/div'
+                                                                              '/div/d'
+                                                                              'iv[1]/'
+                                                                              'div/di'
+                                                                              'v/div['
+                                                                              '2]/div'
+                                                                              '/div/d'
+                                                                              'iv/div'
+                                                                              '/div/d'
+                                                                              'iv/div'
+                                                                              '/div/d'
+                                                                              'iv/spa'
+                                                                              'n[5]/d'
+                                                                              'iv/div'
+                                                                              '/div/d'
+                                                                              'iv/div'
+                                                                              '[3]/di'
+                                                                              'v/labe'
+                                                                              'l[2]/s'
+                                                                              'pan')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_estudou_fundacao_bradesco)
+                                              botao_estudou_fundacao_bradesco)
 
                 # Já atuou como Estagiário ou Aprendiz na Organização Bradesco?
                 botao_atuou_estagiario_fundacao_bradesco = self.navegador.find_element(
@@ -578,7 +586,7 @@ class VagasBradesco:
                     '1]/div/div/div[2]/div/div/div/div/div/div/div/div/div/span['
                     '7]/div/div/div/div/div[3]/div/label[2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_atuou_estagiario_fundacao_bradesco)
+                                              botao_atuou_estagiario_fundacao_bradesco)
 
             if tipo_de_vaga.__contains__('ESCRITURÁRIO'):
                 WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located((
@@ -589,83 +597,83 @@ class VagasBradesco:
                     '3]/div/div/div/div/div/div/input')))
                 # NOME COMPLETO MAE
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div['
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '1]/div/div/div/div/div['
-                                    '3]/div/div/div/div/d'
-                                    'iv/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div['
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '1]/div/div/div/div/div['
+                                            '3]/div/div/div/div/d'
+                                            'iv/div/input').send_keys(
                     nome_mae)
 
                 # DATA DE NASCIMENTO MAE
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div['
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '2]/div/div/div/div/div['
-                                    '3]/div/div/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div['
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '2]/div/div/div/div/div['
+                                            '3]/div/div/div/input').send_keys(
                     nascimento_mae)
 
                 # PROFISSAO MAE
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div[ '
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '3]/div/div/div/div/div['
-                                    '3]/div/div/di'
-                                    'v/div/div/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div[ '
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '3]/div/div/div/div/div['
+                                            '3]/div/div/di'
+                                            'v/div/div/div/input').send_keys(
                     profissao_mae)
 
                 # NOME COMPLETO PAI
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div[ '
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '4]/div/div/div/div/div['
-                                    '3]/div/div/div/div'
-                                    '/div/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div[ '
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '4]/div/div/div/div/div['
+                                            '3]/div/div/div/div'
+                                            '/div/div/input').send_keys(
                     nome_pai)
 
                 # DATA DE NASCIMENTO PAI
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div[ '
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '5]/div/div/div/div/div['
-                                    '3]/div/div/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div[ '
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '5]/div/div/div/div/div['
+                                            '3]/div/div/div/input').send_keys(
                     nascimento_pai)
 
                 # PROFISSAO PAI
                 self.navegador.find_element(By.XPATH,
-                                    '/html/body/div[1]/div/div[2]/div[ '
-                                    '2]/div/div/div/div[1]/div/div/div['
-                                    '2]/div/div/div/div/div['
-                                    '2]/div/div/div/div/span['
-                                    '6]/div/div/div/div/div['
-                                    '3]/div/div/div/d'
-                                    'iv/div/div/input').send_keys(
+                                            '/html/body/div[1]/div/div[2]/div[ '
+                                            '2]/div/div/div/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div['
+                                            '2]/div/div/div/div/span['
+                                            '6]/div/div/div/div/div['
+                                            '3]/div/div/div/d'
+                                            'iv/div/div/input').send_keys(
                     profissao_pai)
 
                 # ESTADO CIVIL
                 botao_estado_civil = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div['
-                                                            '1]/div/div[2]/div['
-                                                            '2]/div/div/div/div['
-                                                            '1]/div/div/div['
-                                                            '2]/div/div/div/div'
-                                                            '/div['
-                                                            '2]/div/div/div/div'
-                                                            '/span['
-                                                            '7]/div/div/div/div '
-                                                            '/div[3]/div/label['
-                                                            '1]/span')
+                                                                 '/html/body/div['
+                                                                 '1]/div/div[2]/div['
+                                                                 '2]/div/div/div/div['
+                                                                 '1]/div/div/div['
+                                                                 '2]/div/div/div/div'
+                                                                 '/div['
+                                                                 '2]/div/div/div/div'
+                                                                 '/span['
+                                                                 '7]/div/div/div/div '
+                                                                 '/div[3]/div/label['
+                                                                 '1]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_estado_civil)
+                                              botao_estado_civil)
 
                 # Algum parente ou conhecido que trabalha na Organização
                 # Bradesco te indicou para trabalhar conosco?
@@ -676,12 +684,12 @@ class VagasBradesco:
                     '2]/div/div/div/div/span[8]/div/div/div/div/div['
                     '3]/div/label[2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_parente_bradesco_escriturario)
+                                              botao_parente_bradesco_escriturario)
 
             # PRÓXIMA PÁGINA
             self.navegador.find_element(By.CSS_SELECTOR,
-                                'button[type="button"][d'
-                                'ata-tag="btnNext"]').click()
+                                        'button[type="button"][d'
+                                        'ata-tag="btnNext"]').click()
 
             # ----------------------- #
             # --- QUARTA PÁGINA --- #
@@ -691,111 +699,111 @@ class VagasBradesco:
                     'APRENDIZ'):
                 WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
                     (By.XPATH, '/ html/body/div/div/div['
-                            '2]/div[2]/div/div/div/div['
-                            '1]/div/div/div[ '
-                            '2]/div/div/div/div/div[ '
-                            '2]/div/div/div/div/span['
-                            '1]/div/div/div/div/div['
-                            '3]/div/div/div/div/div/div'
-                            '/input')))
+                     '2]/div[2]/div/div/div/div['
+                     '1]/div/div/div[ '
+                     '2]/div/div/div/div/div[ '
+                     '2]/div/div/div/div/span['
+                     '1]/div/div/div/div/div['
+                     '3]/div/div/div/div/div/div'
+                     '/input')))
                 # NOME COMPLETO MAE
                 self.navegador.find_element(By.XPATH, '/ html/body/div/div/div[2]/div['
-                                                '2]/div/div/div/'
-                                                'div[1]/div/div/div[ '
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '1]/div/div/div/div/div['
-                                                '3]/div/div/div/d'
-                                                'iv/div/div/input').send_keys(
+                                            '2]/div/div/div/'
+                                            'div[1]/div/div/div[ '
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '1]/div/div/div/div/div['
+                                            '3]/div/div/div/d'
+                                            'iv/div/div/input').send_keys(
                     nome_mae)
 
                 # DATA DE NASCIMENTO MAE
                 self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                                '2]/div/div/div/d'
-                                                'iv[1]/div/div/div['
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '2]/div/div/div/div/div['
-                                                '3]/div/div/div/input').send_keys(
+                                            '2]/div/div/div/d'
+                                            'iv[1]/div/div/div['
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '2]/div/div/div/div/div['
+                                            '3]/div/div/div/input').send_keys(
                     nascimento_mae)
 
                 # PROFISSAO MAE
                 self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                                '2]/div/div/di'
-                                                'v/div[1]/div/div/div['
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '3]/div/div/div/div/div['
-                                                '3]/div/div/div/di'
-                                                'v/div/div/input').send_keys(
+                                            '2]/div/div/di'
+                                            'v/div[1]/div/div/div['
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '3]/div/div/div/div/div['
+                                            '3]/div/div/div/di'
+                                            'v/div/div/input').send_keys(
                     profissao_mae)
 
                 # NOME COMPLETO PAI
                 self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                                '2]/div/div/div/div['
-                                                '1]/div/div/div[ '
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '4]/div/div/div/div/div['
-                                                '3]/div/div/div/d'
-                                                'iv/div/div/input').send_keys(
+                                            '2]/div/div/div/div['
+                                            '1]/div/div/div[ '
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '4]/div/div/div/div/div['
+                                            '3]/div/div/div/d'
+                                            'iv/div/div/input').send_keys(
                     nome_pai)
 
                 # DATA DE NASCIMENTO PAI
                 self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                                '2]/div/div/div/div['
-                                                '1]/div/div/div[ '
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '5]/div/div/div/div/div['
-                                                '3]/div/div/div/input').send_keys(
+                                            '2]/div/div/div/div['
+                                            '1]/div/div/div[ '
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '5]/div/div/div/div/div['
+                                            '3]/div/div/div/input').send_keys(
                     nascimento_pai)
 
                 # PROFISSAO PAI
                 self.navegador.find_element(By.XPATH, '/html/body/div/div/div[2]/div['
-                                                '2]/div/div/div/div['
-                                                '1]/div/div/div[ '
-                                                '2]/div/div/div/div/div[ '
-                                                '2]/div/div/div/div/span['
-                                                '6]/div/div/div/div/div['
-                                                '3]/div/div/di'
-                                                'v/div/div/div/input').send_keys(
+                                            '2]/div/div/div/div['
+                                            '1]/div/div/div[ '
+                                            '2]/div/div/div/div/div[ '
+                                            '2]/div/div/div/div/span['
+                                            '6]/div/div/div/div/div['
+                                            '3]/div/div/di'
+                                            'v/div/div/div/input').send_keys(
                     profissao_pai)
 
                 # ESTADO CIVIL
                 botao_estado_civil = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div/div'
-                                                            '/div[2]/div['
-                                                            '2]/div/div/div/div['
-                                                            '1]/div/div/div[ '
-                                                            '2]/div/div/div/div'
-                                                            '/div[ '
-                                                            '2]/div/div/div/div'
-                                                            '/span['
-                                                            '7]/div/div/div/div'
-                                                            '/div[3]/div/label[ '
-                                                            '1]/span')
+                                                                 '/html/body/div/div'
+                                                                 '/div[2]/div['
+                                                                 '2]/div/div/div/div['
+                                                                 '1]/div/div/div[ '
+                                                                 '2]/div/div/div/div'
+                                                                 '/div[ '
+                                                                 '2]/div/div/div/div'
+                                                                 '/span['
+                                                                 '7]/div/div/div/div'
+                                                                 '/div[3]/div/label[ '
+                                                                 '1]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_estado_civil)
+                                              botao_estado_civil)
 
                 # DISPENSA MILITAR
                 botao_dispensa_militar = self.navegador.find_element(By.XPATH,
-                                                                '/html/body/div'
-                                                                '/div/div['
-                                                                '2]/div['
-                                                                '2]/div/div/div'
-                                                                '/div[ '
-                                                                '1]/div/div/div['
-                                                                '2]/div/div/div'
-                                                                '/div/div[ '
-                                                                '2]/div/div/div'
-                                                                '/div/span['
-                                                                '8]/div/div/div'
-                                                                '/div/div['
-                                                                '3]/div/label[ '
-                                                                '2]/span')
+                                                                     '/html/body/div'
+                                                                     '/div/div['
+                                                                     '2]/div['
+                                                                     '2]/div/div/div'
+                                                                     '/div[ '
+                                                                     '1]/div/div/div['
+                                                                     '2]/div/div/div'
+                                                                     '/div/div[ '
+                                                                     '2]/div/div/div'
+                                                                     '/div/span['
+                                                                     '8]/div/div/div'
+                                                                     '/div/div['
+                                                                     '3]/div/label[ '
+                                                                     '2]/span')
                 self.navegador.execute_script("arguments[0].click();",
-                                        botao_dispensa_militar)
+                                              botao_dispensa_militar)
 
                 # PARENTE BRADESCO #Estágio
                 if tipo_de_vaga.__contains__('ESTÁGIO'):
@@ -806,7 +814,7 @@ class VagasBradesco:
                         '2]/div/div/div/div/span[8]/div/div/div/div/div['
                         '3]/div/label[2]/span')
                     self.navegador.execute_script("arguments[0].click();",
-                                            botao_parente_bradesco_estagio)
+                                                  botao_parente_bradesco_estagio)
 
                 # PARENTE BRADESCO #Aprendiz
                 if tipo_de_vaga.__contains__('APRENDIZ'):
@@ -817,20 +825,20 @@ class VagasBradesco:
                         '2]/div/div/div/div/span[9]/div/div/div/div/div['
                         '3]/div/label[2]/span')
                     self.navegador.execute_script("arguments[0].click();",
-                                            botao_parente_bradesco_aprendiz)
+                                                  botao_parente_bradesco_aprendiz)
 
                 # PRÓXIMA PÁGINA
                 self.navegador.find_element(By.CSS_SELECTOR,
-                                    'button[type="button"][dat'
-                                    'a-tag="btnNext"]').click()
+                                            'button[type="button"][dat'
+                                            'a-tag="btnNext"]').click()
                 WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
                     (By.XPATH, '/html/body/div/div/div['
-                            '2]/div[2]/div/div/div/div[ '
-                            '1]/div/div/div['
-                            '2]/div/div/div/div/div[ '
-                            '2]/div/div/div/div/span['
-                            '1]/div/div/div/div/div[ '
-                            '3]/div/label[1]/span')))
+                     '2]/div[2]/div/div/div/div[ '
+                     '1]/div/div/div['
+                     '2]/div/div/div/div/div[ '
+                     '2]/div/div/div/div/span['
+                     '1]/div/div/div/div/div[ '
+                     '3]/div/label[1]/span')))
 
             # ----------------------- #
             # --- QUINTA PÁGINA --- #
@@ -838,70 +846,74 @@ class VagasBradesco:
 
             WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
                 (By.XPATH, '/html/body/div/div/div[2]/div['
-                        '2]/div/div/div/div[ '
-                        '1]/div/div/div['
-                        '2]/div/div/div/div/div[ '
-                        '2]/div/div/div/div/span['
-                        '1]/div/div/div/div/div[ '
-                        '3]/div/label[1]/span')))
+                 '2]/div/div/div/div[ '
+                 '1]/div/div/div['
+                 '2]/div/div/div/div/div[ '
+                 '2]/div/div/div/div/span['
+                 '1]/div/div/div/div/div[ '
+                 '3]/div/label[1]/span')))
             # Está participando de algum outro Processo Seletivo na Organização
             # Bradesco?
             botao_processo_seletivo = self.navegador.find_element(By.XPATH,
-                                                            '/html/body/div/div'
-                                                            '/div[2]/div['
-                                                            '2]/div/div/div/div[ '
-                                                            '1]/div/div/div['
-                                                            '2]/div/div/div/div'
-                                                            '/div[ '
-                                                            '2]/div/div/div/div'
-                                                            '/span['
-                                                            '1]/div/div/div/div'
-                                                            '/div[ '
-                                                            '3]/div/la'
-                                                            'bel[1]/span')
+                                                                  '/html/body/div/div'
+                                                                  '/div[2]/div['
+                                                                  '2]/div/div/div/div[ '
+                                                                  '1]/div/div/div['
+                                                                  '2]/div/div/div/div'
+                                                                  '/div[ '
+                                                                  '2]/div/div/div/div'
+                                                                  '/span['
+                                                                  '1]/div/div/div/div'
+                                                                  '/div[ '
+                                                                  '3]/div/la'
+                                                                  'bel[1]/span')
             self.navegador.execute_script("arguments[0].click();",
-                                    botao_processo_seletivo)
+                                          botao_processo_seletivo)
 
             # Como soube das oportunidades de construir sua carreira na
             # Organização Bradesco?
             botao_soube_carreira = self.navegador.find_element(By.XPATH,
-                                                        '/html/body/div/div'
-                                                        '/div[2]/div['
-                                                        '2]/div/div/div/div[ '
-                                                        '1]/div/div/div['
-                                                        '2]/div/div/div/div'
-                                                        '/div[ '
-                                                        '2]/div/div/div/div'
-                                                        '/span['
-                                                        '2]/div/div/div/div'
-                                                        '/div[3]/div/label[ '
-                                                        '1]/span')
-            self.navegador.execute_script("arguments[0].click();", botao_soube_carreira)
+                                                               '/html/body/div/div'
+                                                               '/div[2]/div['
+                                                               '2]/div/div/div/div[ '
+                                                               '1]/div/div/div['
+                                                               '2]/div/div/div/div'
+                                                               '/div[ '
+                                                               '2]/div/div/div/div'
+                                                               '/span['
+                                                               '2]/div/div/div/div'
+                                                               '/div[3]/div/label[ '
+                                                               '1]/span')
+            self.navegador.execute_script(
+                "arguments[0].click();", botao_soube_carreira)
 
             # Como foi a sua experiência ao utilizar o site e realizar o
             # processo de candidatura?
             botao_feedback = self.navegador.find_element(By.XPATH,
-                                                    '/html/body/div/div/div['
-                                                    '2]/div[2]/div/div/div/div['
-                                                    '1]/div/div/div[ '
-                                                    '2]/div/div/div/div/div[ '
-                                                    '4]/div/div/div/div/span['
-                                                    '1]/div/div/div/div/div['
-                                                    '3]/div/label[5]/span')
-            self.navegador.execute_script("arguments[0].click();", botao_feedback)
+                                                         '/html/body/div/div/div['
+                                                         '2]/div[2]/div/div/div/div['
+                                                         '1]/div/div/div[ '
+                                                         '2]/div/div/div/div/div[ '
+                                                         '4]/div/div/div/div/span['
+                                                         '1]/div/div/div/div/div['
+                                                         '3]/div/label[5]/span')
+            self.navegador.execute_script(
+                "arguments[0].click();", botao_feedback)
 
             # BOTÃO ENVIAR! self.navegador.find_element(By.CSS_SELECTOR, 'button[
             # type="button"][data-tag="btnSubmit"]').click() time.sleep(5)
 
-            print(f'O preenchimento da vaga {i + 1} foi concluído com sucesso!')
+            print(
+                f'O preenchimento da vaga {i + 1} foi concluído com sucesso!')
 
         print(
             'O processo de preenchimento de formulários, '
             'foi concluído com sucesso!')
 
     def obter_vagas(self):
-        filtro = input('Digite o(s) tipo(s) de vaga(s) desejada(s). \n*Preencha sem as aspas e com a seguinte separação: "APRENDIZ|ESTAGIÁRIO|ESCRITURÁRIO": >>>')
-        
+        filtro = input(
+            'Digite o(s) tipo(s) de vaga(s) desejada(s). \n*Preencha sem as aspas e com a seguinte separação: "APRENDIZ|ESTAGIÁRIO|ESCRITURÁRIO": >>>')
+
         # Entrando no site
         print('Entrando no site...')
         self.navegador.get(
@@ -909,8 +921,8 @@ class VagasBradesco:
             "=pt-BR")
         WebDriverWait(self.navegador, 20).until(EC.presence_of_element_located(
             (By.XPATH, '/html/body/div[1]/div/div[1]/div['
-                    '2]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[ '
-                    '2]/div/span/div/div/nav/button[2]')))
+             '2]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[ '
+             '2]/div/span/div/div/nav/button[2]')))
 
         # Botão cookie
         try:
@@ -942,8 +954,10 @@ class VagasBradesco:
             print(
                 f'Coletando e armazenando as vagas da página {numero_pagina}...')
             for vaga in vagas_geral:
-                vaga_info = vaga.find('a', attrs={'data-tag': 'displayJobTitle'})
-                vaga_url = vaga.find('a', attrs={'data-tag': 'displayJobTitle'})
+                vaga_info = vaga.find(
+                    'a', attrs={'data-tag': 'displayJobTitle'})
+                vaga_url = vaga.find(
+                    'a', attrs={'data-tag': 'displayJobTitle'})
                 vaga_local = vaga.find(
                     'p', attrs={'data-tag': 'displayJobLocation'})
                 if vaga_info:
@@ -965,10 +979,10 @@ class VagasBradesco:
 
             print('Passando para a proxima página...')
             self.navegador.find_element(By.XPATH,
-                                '/html/body/div[1]/div/div[1]/div['
-                                '2]/div/div/div/div/div/div/div[2]/div[ '
-                                '2]/div/div/div['
-                                '2]/div/span/div/div/nav/button[2]').click()
+                                        '/html/body/div[1]/div/div[1]/div['
+                                        '2]/div/div/div/div/div/div/div[2]/div[ '
+                                        '2]/div/div/div['
+                                        '2]/div/span/div/div/nav/button[2]').click()
             numero_pagina = numero_pagina + 1
             if numero_pagina == ultimo_botao + 1:
                 print('Encontrada a última página!')
@@ -985,6 +999,7 @@ class VagasBradesco:
         # Convertendo para um arquivo excel
         dados.to_excel('VagasBradesco.xlsx', index=False)
         print('Concluído!')
+
 
 if __name__ == '__main__':
     VB = VagasBradesco()
