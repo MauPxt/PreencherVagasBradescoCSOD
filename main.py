@@ -27,7 +27,8 @@ class VagasBradesco:
 
         login_email = input('Login e-mail: >>> ')
         senha_email = getpass.getpass(
-            prompt='Senha e-mail: *Não é possível visualizar, mas a senha está sendo escrita >>> ', stream='*')
+            prompt='Senha e-mail: *Não é possível visualizar, mas a senha '
+                   'está sendo escrita >>> ', stream=None)
         cpf = input('CPF: *somente numeros >>> ')
         rg = input('RG: *somente numeros >>> ')
         nascimento = input('Data de nascimento: *formato dd/mm/aaaa >>> ')
@@ -47,7 +48,8 @@ class VagasBradesco:
         print('Entrando no site...')
         # ENTRAR NO SITE DO BRADESCO CSOD
         self.navegador.get(
-            "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco&lang"
+            "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco"
+            "&lang "
             "=pt-BR")
         WebDriverWait(self.navegador, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'c-btn')))
@@ -67,7 +69,8 @@ class VagasBradesco:
                                             'div/div/div/div/div/div'
                                             '/div[2]/a')))
         # BOTAO ENTRAR
-        self.navegador.find_element(By.XPATH, '//*[@id="cs-root"]/div/div[1]/div['
+        self.navegador.find_element(By.XPATH, '//*[@id="cs-root"]/div/div['
+                                              '1]/div[ '
                                     '1]/span/div/ '
                                     'div/div/div/div/div/div/div['
                                     '2]/a').click()
@@ -960,30 +963,18 @@ class VagasBradesco:
                     'a', attrs={'data-tag': 'displayJobTitle'})
                 vaga_local = vaga.find(
                     'p', attrs={'data-tag': 'displayJobLocation'})
-                if vaga_info:
-                    vaga_info = vaga_info.text
-                else:
-                    vaga_info = 'vazio'
-
+                vaga_info = vaga_info.text if vaga_info else 'vazio'
                 if vaga_url:
                     vaga_url = 'https://bradesco.csod.com' + vaga_url['href']
                 else:
                     vaga_url = 'vazio'
 
-                if vaga_local:
-                    vaga_local = vaga_local.text
-                else:
-                    vaga_local = 'vazio'
-
+                vaga_local = vaga_local.text if vaga_local else 'vazio'
                 dados_vagas.append([vaga_info, vaga_local, vaga_url])
 
             print('Passando para a proxima página...')
-            self.navegador.find_element(By.XPATH,
-                                        '/html/body/div[1]/div/div[1]/div['
-                                        '2]/div/div/div/div/div/div/div[2]/div[ '
-                                        '2]/div/div/div['
-                                        '2]/div/span/div/div/nav/button[2]').click()
-            numero_pagina = numero_pagina + 1
+            self.navegador.find_element(By.CSS_SELECTOR, ".next").click()
+            numero_pagina += 1
             if numero_pagina == ultimo_botao + 1:
                 print('Encontrada a última página!')
             time.sleep(3)
