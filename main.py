@@ -1,14 +1,16 @@
+import getpass
 import time
 import warnings
+
 import pandas as pd
+from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
-import getpass
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 warnings.filterwarnings("ignore")
 
@@ -21,7 +23,8 @@ class VagasBradesco:
         # options.add_argument('--headless')
         options.add_argument('--disable-notifications')
         options.add_argument('log-level=3')
-        self.navegador = webdriver.Chrome(options=options)
+        self.navegador = webdriver.Chrome(
+            ChromeDriverManager().install(), options=options)
 
     def enviar_curriculo(self):
 

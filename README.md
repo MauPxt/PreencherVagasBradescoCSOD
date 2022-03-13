@@ -31,7 +31,7 @@ Selenium
 1 - Realize o download dos arquivos. Você pode fazer isso da seguinte forma:
     1.1 - Baixar esse repositório em formato .zip e por fim extrair os arquivos para uma pasta de sua preferência.
     1.2 - Clonar esse repositório através do git com o seguinte comando: "$ git clone https://github.com/MauPxt/vagas_bradesco_csod".
-2 - Utilizar o comando "$ pip install " para cada biblioteca das linhas "1-11" que você ainda não realizou a instalação.
+2 - Utilizar o comando "$ pip install -r requirements.txt"
 3 - Executar o script "$ python main.py":
   3.1 - Inserir os dados solicitados no terminal.
 4 - Bônus - Para verificar as vagas que foi cadastrado(a) basta abrir o arquivo em excel gerado na pasta em que se encontra o script.
